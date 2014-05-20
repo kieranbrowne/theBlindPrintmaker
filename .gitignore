@@ -1,0 +1,7 @@
+# general
+*.~
+*.swp
+*.bak
+*.log
+bin/
+obj/
