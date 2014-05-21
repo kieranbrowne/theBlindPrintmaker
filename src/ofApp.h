@@ -17,6 +17,7 @@ class ofApp : public ofBaseApp{
 		void draw();
         void canvas(int alpha);
         void log();
+        int logLength();
 
 		void keyPressed(int key);
 		void keyReleased(int key);

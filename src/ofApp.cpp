@@ -2,7 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-    count = 0;
+    count = logLength();
     fileName = ofToString(count,5,'0') + ".png"; 
     log();
     w = ofGetWindowWidth();
@@ -22,6 +22,7 @@ void ofApp::draw(){
 //////////////////////////////////////////////
     ofPushMatrix();
     // art stuff
+    print.colour(180,200,200,100);
     print.read(p0000,100,100,200,0);
     print.read(p0001,100,100,200,0);
     // see if its possible to call scripts in here
@@ -30,6 +31,9 @@ void ofApp::draw(){
 
     img.grabScreen(0,0,w,h);
     img.saveImage(fileName);
+
+
+    ofExit();
 }
 
 //--------------------------------------------------------------
@@ -48,8 +52,9 @@ void ofApp::canvas(int alpha){
     }
 }
 
+//--------------------------------------------------------------
 void ofApp::log(){
-  ofstream logfile ("log.csv");
+  ofstream logfile ("log.csv",ios::out | ios::app);
   if (logfile.is_open())
   {
     logfile << fileName << ",";
@@ -58,8 +63,16 @@ void ofApp::log(){
   }
   else cout << "Unable to open file";
 }
+//--------------------------------------------------------------
+int ofApp::logLength(){
+    int numLines = 0;
+    std::string line;
+    std::ifstream logFile("log.csv");
 
-
+    while (std::getline(logFile, line))
+        ++numLines;
+    return numLines;
+}
 
 
 //--------------------------------------------------------------

@@ -7,6 +7,7 @@ class inkPrint{
 
     public:
         
+        void colour(int h, int s, int b, int a);
         void read(float p[][2],float dx,float dy,float scale,float rot);
 
         float scale;

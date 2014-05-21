@@ -11,6 +11,8 @@ inkPrint::inkPrint()
 
 // -------------------------------
 void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot){
+    ofFill();
+    ofSetPolyMode(OF_POLY_WINDING_NONZERO);
     ofBeginShape();
     // ----------
     for(int i=0; i<=sizeof(p); i++){
@@ -20,4 +22,9 @@ void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot){
     }
     // ----------
     ofEndShape();
+}
+
+// -------------------------------
+void inkPrint::colour(int h, int s, int b, int a){
+    ofSetColor(ofColor::fromHsb(h,s,b,a));
 }
