@@ -19,11 +19,13 @@ void ofApp::draw(){
     ofBackground(ofColor::fromHsb(30, 20, 230));
     canvas(80);
 
-
+//////////////////////////////////////////////
     ofPushMatrix();
     // art stuff
+    print.p0000();
+    // see if its possible to call scripts in here
     ofPopMatrix();
-
+//////////////////////////////////////////////
 
     img.grabScreen(0,0,w,h);
     img.saveImage(fileName);

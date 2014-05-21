@@ -7,6 +7,8 @@
 #include <fstream>
 using namespace std;
 
+#include "inkPrint.h"
+
 class ofApp : public ofBaseApp{
 
 	public:
@@ -32,4 +34,8 @@ class ofApp : public ofBaseApp{
         int count;
         string fileName;
         int w,h;
+
+        // print class
+        inkPrint print;
+
 };
