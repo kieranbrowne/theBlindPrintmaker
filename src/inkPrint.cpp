@@ -9,12 +9,14 @@ inkPrint::inkPrint()
     scale = 100;
 }
 // -------------------------------
-void inkPrint::p0000(){
-    ofSetColor(12,40,53,80);
+void inkPrint::read(float p[][2]){
     ofBeginShape();
-    ofVertex(x,y);
-    ofVertex(x+scale,y);
-    ofVertex(x+scale,y+scale);
-    ofVertex(x,y+scale);
+    // ----------
+    for(int i=0; i<=sizeof(p); i++){
+        float x = p[i][0] * scale;
+        float y = p[i][1] * scale;
+        ofVertex(x,y);
+    }
+    // ----------
     ofEndShape();
 }

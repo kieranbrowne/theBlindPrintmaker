@@ -7,16 +7,14 @@ class inkPrint{
 
     public:
         
-        //storePrints//
-        void p0000();
-        //endStorePrints//
+        void read(float p[][2]);
 
         float scale;
         float x,y;
         float rot; // rotation
 
         inkPrint(); // constuctor
-
+        
 };
 
 #endif
