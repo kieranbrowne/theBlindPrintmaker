@@ -2,7 +2,7 @@
 *.~
 *.swp
 *.bak
+*.test
 *.log
 bin/
 obj/
-python/
