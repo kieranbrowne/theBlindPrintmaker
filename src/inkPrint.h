@@ -7,10 +7,10 @@ class inkPrint{
 
     public:
         
-        void read(float p[][2]);
+        void read(float p[][2],float dx,float dy,float scale,float rot);
 
         float scale;
-        float x,y;
+        float dx,dy;
         float rot; // rotation
 
         inkPrint(); // constuctor

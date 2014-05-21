@@ -22,8 +22,8 @@ void ofApp::draw(){
 //////////////////////////////////////////////
     ofPushMatrix();
     // art stuff
-    print.read(p0000);
-    print.read(p0001);
+    print.read(p0000,100,100,200,0);
+    print.read(p0001,100,100,200,0);
     // see if its possible to call scripts in here
     ofPopMatrix();
 //////////////////////////////////////////////

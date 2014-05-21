@@ -38,6 +38,6 @@ class ofApp : public ofBaseApp{
         // print class
         inkPrint print;
         float p0000[4][2] = {{0,0},{0,0},{1,1},{0,1}};
-        float p0001[4][2] = {{0,0},{1,0},{1,1},{0,1}};
+        float p0001[5][2] = {{0,0},{1,0},{1,1},{0,1},{1.3,1.8}};
 
 };
