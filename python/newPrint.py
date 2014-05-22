@@ -1,5 +1,5 @@
 #!/usr/bin/env python 
-from random import random
+from random import random, randint
 
 def getNumPrints():
     search = "float p"
@@ -43,14 +43,27 @@ def replanImage():
     searchEnd   = "//!e!//"
     file = open("src/ofApp.cpp.test", "r+")
     contents = file.read()
-    prechange = contents.find(searchStart)
+    prechange = contents[contents.find(searchStart)+len(searchStart):]
     postchange = contents[contents.find(searchEnd):]
 
-    appendix = ""
+    nl = "\n    "
+    h = str(randint(0,255))
+    s = str(randint(0,255))
+    b = str(randint(0,255))
+    a = str(randint(50,200))
+    appendix = nl+"print.colour("+h+","+s+","+b+","+a+");"
+    appendix += prtRd()
 
     file.write(prechange+appendix+postchange)
     file.close()
 
     return 0
+
+def prtRd();
+    nl = "\n    "
+    string = nl+"print.read("
+
+    return string
+    
     
 writeNewPrint("//!!//",carvePrint())
