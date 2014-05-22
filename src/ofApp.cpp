@@ -21,11 +21,11 @@ void ofApp::draw(){
 
 //////////////////////////////////////////////
     ofPushMatrix();
-    // art stuff
+    //!s!// 
     print.colour(180,200,200,100);
     print.read(p0000,100,100,200,0);
     print.read(p0001,100,100,200,0);
-    // see if its possible to call scripts in here
+    //!e!//
     ofPopMatrix();
 //////////////////////////////////////////////
 
