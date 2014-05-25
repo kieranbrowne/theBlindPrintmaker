@@ -3,7 +3,7 @@ from random import random, randint
 
 def getNumPrints():
     search = "float p"
-    file = open("src/ofApp.h.test", "r+")
+    file = open("src/ofApp.h", "r+")
     contents = file.read()
     index = 0
     num = 0
@@ -30,7 +30,7 @@ def carvePrint():
     return pattern
 
 def writeNewPrint(search,appendix):
-    file = open("src/ofApp.h.test", "r+")
+    file = open("src/ofApp.h", "r+")
     contents = file.read()
     cursorLoc = contents.find(search)
     postCursor = contents[cursorLoc:]
@@ -41,10 +41,12 @@ def writeNewPrint(search,appendix):
 def replanImage():
     searchStart = "//!s!//"
     searchEnd   = "//!e!//"
-    file = open("src/ofApp.cpp.test", "r+")
+    file = open("src/ofApp.cpp", "r+")
     contents = file.read()
-    prechange = contents[contents.find(searchStart)+len(searchStart):]
+    prechange = contents[:contents.find(searchStart)+len(searchStart)]
     postchange = contents[contents.find(searchEnd):]
+    file.close()
+    file = open("src/ofApp.cpp", "w+")
 
     nl = "\n    "
     h = str(randint(0,255))
@@ -53,17 +55,28 @@ def replanImage():
     a = str(randint(50,200))
     appendix = nl+"print.colour("+h+","+s+","+b+","+a+");"
     appendix += prtRd()
+    appendix += prtRd()
+    appendix += prtRd()
 
     file.write(prechange+appendix+postchange)
     file.close()
 
-    return 0
-
-def prtRd();
+def prtRd():
+    #print.read(p0000,100,100,200,0);
     nl = "\n    "
-    string = nl+"print.read("
+    string = nl+"print.read(p"
+    string += str(randint(0,getNumPrints())).zfill(4)
+    b = 100 # border
+    s = randint(1,400)
+    x = randint(b,600-b-s)
+    y = randint(b,600-b-s)
+    string += "," + str(x) + "," + str(y) + "," + str(s) + ",0);" + nl 
 
     return string
     
-    
+
+
+### MAIN ###
+
 writeNewPrint("//!!//",carvePrint())
+replanImage()
