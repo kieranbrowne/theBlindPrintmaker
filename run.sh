@@ -1,5 +1,8 @@
 #!/bin/bash
 
+cd bin/data/inspiration
+avconv -r 1/5 -i *.jpg -c:v libx264 ins.mp4
+cd ../../../
 make
 make run
 #scp bin/data/$img to webserver

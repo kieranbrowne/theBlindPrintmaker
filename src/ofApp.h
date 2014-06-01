@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "inkPrint.h"
+#include "shapeDetect.h"
 
 class ofApp : public ofBaseApp{
 
@@ -35,6 +36,9 @@ class ofApp : public ofBaseApp{
         int count;
         string fileName;
         int w,h;
+
+        // shape detect class
+        shapeDetect inspiration;
 
         // print class
         inkPrint print;

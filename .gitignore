@@ -4,5 +4,6 @@
 *.bak
 *.test
 *.log
+*.csv
 bin/
 obj/

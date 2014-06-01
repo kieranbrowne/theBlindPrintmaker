@@ -29,11 +29,13 @@ void ofApp::draw(){
     ofPopMatrix();
 //////////////////////////////////////////////
 
+    inspiration.see();
+
     img.grabScreen(0,0,w,h);
     img.saveImage(fileName);
 
 
-    ofExit();
+//    ofExit();
 }
 
 //--------------------------------------------------------------
