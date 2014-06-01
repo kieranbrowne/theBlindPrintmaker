@@ -10,6 +10,9 @@ class shapeDetect{
     public:
         
         void see();
+        bool shapeKnown(int blobNum);
+        void addToPrints(int blobNum);
+        
 
         ofxCvColorImage         cvImg;
         ofxCvGrayscaleImage     greyImg;

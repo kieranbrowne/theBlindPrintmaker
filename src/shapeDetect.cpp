@@ -4,7 +4,9 @@ shapeDetect::shapeDetect(){
 }
 //--------------------------------
 void shapeDetect::see(){
+    int t = 20; // threshold
     bool isNewFrame = false;
+
     vidPlayer.loadMovie("inspiration/ins.mp4");
     vidPlayer.play();
     bg.loadImage("inspiration/blackBG.png");
@@ -24,15 +26,29 @@ void shapeDetect::see(){
     greyImg = cvImg;
     greyBg.setFromPixels(bg.getPixels(),320,320);
     greyDiff.absDiff(greyBg,greyImg);
-    greyDiff.threshold(80);
-    greyDiff.draw(0,0);
+    greyDiff.threshold(t);
+//    greyDiff.draw(0,0);
     contourFinder.findContours(greyDiff, 20, (320*320), 10, true); // find holes
-//    contourFinder.findContours(ins,20,320*320,10,true);
 
     ofSetHexColor(0xffffff);
     ofFill();
 //    contourFinder.draw(0,0);
+    for (int i = 0; i < contourFinder.nBlobs; i++){
+        contourFinder.blobs[i].draw(0,0);
+        ofDrawBitmapString(ofToString(i), contourFinder.blobs[i].centroid);
+        cout << ofToString(contourFinder.blobs[i].nPts) << endl;
+    }
     
 }
 
 //--------------------------------
+bool shapeDetect::shapeKnown(int blobNum){
+    bool known = false;
+
+    
+    return known;
+}
+//--------------------------------
+void shapeDetect::addToPrints(int blobNum){
+    
+}
