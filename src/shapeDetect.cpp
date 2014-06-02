@@ -35,9 +35,7 @@ void shapeDetect::see(){
 //    contourFinder.draw(0,0);
     for (int i = 0; i < contourFinder.nBlobs; i++){
         if (shapeKnown(i)){
-            int whatever = 0;
-            whatever ++;
-            whatever --;
+            addToPrints(i);
         }
     }
     
@@ -45,17 +43,18 @@ void shapeDetect::see(){
 
 //--------------------------------
 bool shapeDetect::shapeKnown(int blob){
-    bool known = false;
-    int mainPoints[50];
+    bool known = true;
+    int mainPoints[10];
     int numPoints = contourFinder.blobs[blob].nPts;
 
     cout << "shape number " << ofToString(blob) << endl;
     cout << "number of points" << ofToString(contourFinder.blobs[blob].nPts) << endl;
     
+    int size = 0;
     int next = 0;
-    while(next != 9999){
+/*    while(next != 9999){
         next = recursivePointFind(blob, -360,360,next,next);
-    } 
+    }*/ 
 
     /*ofFill();
     ofSetColor(180,180,180);
@@ -71,7 +70,7 @@ bool shapeDetect::shapeKnown(int blob){
     }
     ofEndShape(true);*/
     
-    int co = 0;
+   /* int co = 0;
     int x = 0; int y = 0;
     for(int i=0; i<=mainPoints.size(); i++){
        if(abs(contourFinder.blobs[blob].pts[mainPoints[i]].x -x) + abs(contourFinder.blobs[blob].pts[mainPoints[i]].y - y) >= 3){
@@ -79,20 +78,42 @@ bool shapeDetect::shapeKnown(int blob){
        }
        x = contourFinder.blobs[blob].pts[mainPoints[i]].x;
        y = contourFinder.blobs[blob].pts[mainPoints[i]].y;
-    }
+    }*/
 
-    contourFinder.blobs[blob];
+    //contourFinder.blobs[blob];
     ofSetColor(255,0,0);
-    ofDrawBitmapString(ofToString(co), contourFinder.blobs[blob].centroid);
+    //ofDrawBitmapString(ofToString(co), contourFinder.blobs[blob].centroid);
     
     return known;
 }
 
 //--------------------------------
-void shapeDetect::addToPrints(int blobNum){
-    
-}
+void shapeDetect::addToPrints(int blob){
+    int numPrints = 8; // replace with function to actually find number of prints in ofApp.cpp
+    int numVerts = contourFinder.blobs[blob].nPts;
+    string newPrint = "\n        float p";
+    newPrint += ofToString((numPrints+1),4,'0');
+    newPrint += "["+ofToString(numVerts)+"][2] = {";
+    int lw = contourFinder.blobs[blob].boundingRect.getWidth();
+    int lh = contourFinder.blobs[blob].boundingRect.getHeight();
+    int lim = max(lw,lh);
+    int lx = contourFinder.blobs[blob].boundingRect.getX();
+    int ly = contourFinder.blobs[blob].boundingRect.getY();
+    for(int i=0;i<numVerts;i++){
+        float x = contourFinder.blobs[blob].pts[i].x - lx;
+        float y = contourFinder.blobs[blob].pts[i].y - ly;
+        // normalise
+        x = ofMap(x,0,lim,0,1); 
+        y = ofMap(y,0,lim,0,1); 
 
+        newPrint += "{"+ofToString(x,3)+","+ofToString(y,3)+"}";
+
+        if (i != numVerts-1){ newPrint += ",";}
+    }  
+    newPrint += "};";
+    cout << newPrint << endl;
+}
+/*
 //--------------------------------
 float shapeDetect::getAngle(int blob, int b, int tot){
 
@@ -138,7 +159,7 @@ float shapeDetect::getAngle(int blob, int b, int tot){
 
 //--------------------------------
 int shapeDetect::recursivePointFind(int blob, float angle1,float angle2,int testPt, int contextPt){
-    if (contextPt >= contourFinder.blobs[blob].nPts-1) {return 9999;} // if done return 9999 else return next point
+    if (contextPt >= contourFinder.blobs[blob].nPts-5) {return 9999;} // if done return 9999 else return next point
 
     float newAngle;
     float angleMin = min(angle1,angle2);
@@ -157,7 +178,8 @@ int shapeDetect::recursivePointFind(int blob, float angle1,float angle2,int test
         recursivePointFind(blob, angleMin,angleMax,testPt,contextPt+1);
     }else{
         // add point to important points
+        //mainPoints[0] = contextPt;
         return contextPt;
     }
 
-}
+}*/
