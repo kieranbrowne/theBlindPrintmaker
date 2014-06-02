@@ -12,6 +12,8 @@ class shapeDetect{
         void see();
         bool shapeKnown(int blobNum);
         void addToPrints(int blobNum);
+        float getAngle(int blob, int b, int tot);
+        int recursivePointFind(int blob, float angle1,float angle2,int testPt, int contextPt);
         
 
         ofxCvColorImage         cvImg;
