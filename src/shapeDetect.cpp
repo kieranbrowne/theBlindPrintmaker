@@ -93,6 +93,7 @@ void shapeDetect::addToPrints(int blob){
     string line;
     string pre = "";
     string post = "";
+    int numPrints = 0;
     ifstream ofapp ("../src/ofApp.h");
     bool ispre = true;
     if (ofapp.is_open()){
@@ -101,8 +102,10 @@ void shapeDetect::addToPrints(int blob){
                 line.resize(line.length() -6); // remove the //!!//
                 pre += line + "\n";
                 ispre = false; 
+                if (line.find("float p") != string::npos) numPrints++;
             }else if (ispre){
                 pre += line + "\n";
+                if (line.find("float p") != string::npos) numPrints++;
             }else if (!ispre){
                 post += line + "\n";
             }
@@ -112,10 +115,9 @@ void shapeDetect::addToPrints(int blob){
     else cout << "File Not Found. Make sure it is in correct directory" << endl;
     
 
-    int numPrints = 8; // replace with function to actually find number of prints in ofApp.cpp
     int numVerts = contourFinder.blobs[blob].nPts;
     string newPrint = "        float p";
-    newPrint += ofToString((numPrints+1),4,'0');
+    newPrint += ofToString((numPrints),4,'0');
     newPrint += "["+ofToString(numVerts)+"][2] = {";
     int lw = contourFinder.blobs[blob].boundingRect.getWidth();
     int lh = contourFinder.blobs[blob].boundingRect.getHeight();

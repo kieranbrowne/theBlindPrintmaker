@@ -7,6 +7,8 @@ void ofApp::setup(){
     log();
     w = ofGetWindowWidth();
     h = ofGetWindowHeight();
+
+    inspiration.see();
 }
 
 //--------------------------------------------------------------
@@ -29,7 +31,6 @@ void ofApp::draw(){
     ofPopMatrix();
 //////////////////////////////////////////////
 
-    inspiration.see();
 
     img.grabScreen(0,0,w,h);
     img.saveImage(fileName);
@@ -68,10 +69,10 @@ void ofApp::log(){
 //--------------------------------------------------------------
 int ofApp::logLength(){
     int numLines = 0;
-    std::string line;
-    std::ifstream logFile("log.csv");
+    string line;
+    ifstream logFile("log.csv");
 
-    while (std::getline(logFile, line))
+    while (getline(logFile, line))
         ++numLines;
     return numLines;
 }

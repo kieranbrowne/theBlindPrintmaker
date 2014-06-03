@@ -54,9 +54,8 @@ def replanImage():
     b = str(randint(0,255))
     a = str(randint(50,200))
     appendix = nl+"print.colour("+h+","+s+","+b+","+a+");"
-    appendix += prtRd()
-    appendix += prtRd()
-    appendix += prtRd()
+    for i in range(10):
+        appendix += prtRd()
 
     file.write(prechange+appendix+postchange)
     file.close()
@@ -78,5 +77,5 @@ def prtRd():
 
 ### MAIN ###
 
-writeNewPrint("//!!//",carvePrint())
+#writeNewPrint("//!!//",carvePrint())
 replanImage()
