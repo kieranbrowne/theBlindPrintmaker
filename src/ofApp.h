@@ -7,6 +7,7 @@
 #include <fstream>
 #include <string>
 using namespace std;
+#include <sys/stat.h>
 
 #include "inkPrint.h"
 #include "shapeDetect.h"
@@ -20,7 +21,7 @@ class ofApp : public ofBaseApp{
         void canvas(int alpha);
         void log();
         int logLength();
-        inline bool fileExists (const std::string& name);
+        inline bool fileExists (const string& name);
 		void keyPressed(int key);
 		void keyReleased(int key);
 		void mouseMoved(int x, int y );

@@ -32,12 +32,13 @@ void shapeDetect::see(){
 
     ofSetHexColor(0xffffff);
     ofFill();
-//    contourFinder.draw(0,0);
     for (int i = 0; i < contourFinder.nBlobs; i++){
         if (shapeKnown(i)){
             addToPrints(i);
         }
     }
+
+    if(remove("data/inspiration/ins.mp4") != 0) perror("Error deleting ins.mp4");
     
 }
 
@@ -56,40 +57,11 @@ bool shapeDetect::shapeKnown(int blob){
         next = recursivePointFind(blob, -360,360,next,next);
     }*/ 
 
-    /*ofFill();
-    ofSetColor(180,180,180);
-    ofBeginShape();
-    int count =0;
-    for (int i=0;i<numPoints;i++){
-        if(abs(getAngle(blob,i,numPoints)) >= 35){
-            cout << ofToString(getAngle(blob,i,numPoints)) << endl;
-            ofVertex(contourFinder.blobs[blob].pts[i].x,contourFinder.blobs[blob].pts[i].y);
-            mainPoints[count] = i; // find a way to append c++ arrays.
-            count ++;
-         }
-    }
-    ofEndShape(true);*/
-    
-   /* int co = 0;
-    int x = 0; int y = 0;
-    for(int i=0; i<=mainPoints.size(); i++){
-       if(abs(contourFinder.blobs[blob].pts[mainPoints[i]].x -x) + abs(contourFinder.blobs[blob].pts[mainPoints[i]].y - y) >= 3){
-           co++;
-       }
-       x = contourFinder.blobs[blob].pts[mainPoints[i]].x;
-       y = contourFinder.blobs[blob].pts[mainPoints[i]].y;
-    }*/
-
-    //contourFinder.blobs[blob];
-    ofSetColor(255,0,0);
-    //ofDrawBitmapString(ofToString(co), contourFinder.blobs[blob].centroid);
-    
     return known;
 }
 
 //--------------------------------
 void shapeDetect::addToPrints(int blob){
-    // read ofApp.h file
     string line;
     string pre = "";
     string post = "";

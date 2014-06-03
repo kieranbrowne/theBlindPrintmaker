@@ -8,11 +8,16 @@ void ofApp::setup(){
     w = ofGetWindowWidth();
     h = ofGetWindowHeight();
 
-    if(fileExists("data/inspiration/ins.mp4") inspiration.see();
+    if(fileExists("data/inspiration/ins.mp4")) inspiration.see();
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
+    if(ofGetFrameNum() >= 1){
+        ofSleepMillis(4000);
+        ofExit();
+    }
+
 }
 
 //--------------------------------------------------------------
@@ -35,9 +40,6 @@ void ofApp::draw(){
     img.grabScreen(0,0,w,h);
     img.saveImage(fileName);
 
-
-    ofSleepMillis(4000);
-    ofExit();
 }
 
 //--------------------------------------------------------------
@@ -78,9 +80,14 @@ int ofApp::logLength(){
     return numLines;
 }
 
-inline bool fileExists (const std::string& name) {
-      struct stat buffer;   
-        return (stat (name.c_str(), &buffer) == 0); 
+//--------------------------------------------------------------
+inline bool ofApp::fileExists (const string& name) {
+    if (FILE *file = fopen(name.c_str(), "r")) {
+        fclose(file);
+        return true;
+    } else {
+        return false;
+    }   
 }
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
