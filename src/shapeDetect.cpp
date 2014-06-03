@@ -89,9 +89,32 @@ bool shapeDetect::shapeKnown(int blob){
 
 //--------------------------------
 void shapeDetect::addToPrints(int blob){
+    // read ofApp.h file
+    string line;
+    string pre = "";
+    string post = "";
+    ifstream ofapp ("../src/ofApp.h");
+    bool ispre = true;
+    if (ofapp.is_open()){
+        while (getline (ofapp,line) ){
+            if (line.find("//!!//") != string::npos){
+                line.resize(line.length() -6); // remove the //!!//
+                pre += line + "\n";
+                ispre = false; 
+            }else if (ispre){
+                pre += line + "\n";
+            }else if (!ispre){
+                post += line + "\n";
+            }
+        }
+        ofapp.close();
+    }
+    else cout << "File Not Found. Make sure it is in correct directory" << endl;
+    
+
     int numPrints = 8; // replace with function to actually find number of prints in ofApp.cpp
     int numVerts = contourFinder.blobs[blob].nPts;
-    string newPrint = "\n        float p";
+    string newPrint = "        float p";
     newPrint += ofToString((numPrints+1),4,'0');
     newPrint += "["+ofToString(numVerts)+"][2] = {";
     int lw = contourFinder.blobs[blob].boundingRect.getWidth();
@@ -110,8 +133,17 @@ void shapeDetect::addToPrints(int blob){
 
         if (i != numVerts-1){ newPrint += ",";}
     }  
-    newPrint += "};";
-    cout << newPrint << endl;
+    newPrint += "};//!!//\n";
+
+    ofstream rewrite; 
+    rewrite.open ("../src/ofApp.h");
+    if (rewrite.is_open()){
+        rewrite << pre;
+        rewrite << newPrint;
+        rewrite << post;
+        rewrite.close();
+    }
+    else cout << "Unable to open file.";
 }
 /*
 //--------------------------------
