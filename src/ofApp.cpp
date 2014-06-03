@@ -8,7 +8,7 @@ void ofApp::setup(){
     w = ofGetWindowWidth();
     h = ofGetWindowHeight();
 
-    inspiration.see();
+    if(fileExists("data/inspiration/ins.mp4") inspiration.see();
 }
 
 //--------------------------------------------------------------
@@ -36,7 +36,8 @@ void ofApp::draw(){
     img.saveImage(fileName);
 
 
-//    ofExit();
+    ofSleepMillis(4000);
+    ofExit();
 }
 
 //--------------------------------------------------------------
@@ -77,7 +78,10 @@ int ofApp::logLength(){
     return numLines;
 }
 
-
+inline bool fileExists (const std::string& name) {
+      struct stat buffer;   
+        return (stat (name.c_str(), &buffer) == 0); 
+}
 //--------------------------------------------------------------
 void ofApp::keyPressed(int key){
 

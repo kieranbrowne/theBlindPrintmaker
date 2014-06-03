@@ -15,7 +15,7 @@ void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot){
     ofSetPolyMode(OF_POLY_WINDING_NONZERO);
     ofBeginShape();
     // ----------
-    for(int i=0; i<=100; i++){
+    for(int i=0; i<=80; i++){
         float x = dx + (p[i][0] * scale);
         float y = dy + (p[i][1] * scale);
         ofVertex(x,y);
