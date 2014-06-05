@@ -47,15 +47,16 @@ def replanImage():
     postchange = contents[contents.find(searchEnd):]
     file.close()
     file = open("src/ofApp.cpp", "w+")
-
+    appendix = ""
     nl = "\n    "
-    h = str(randint(0,255))
-    s = str(randint(0,255))
-    b = str(randint(0,255))
-    a = str(randint(50,200))
-    appendix = nl+"print.colour("+h+","+s+","+b+","+a+");"
-    for i in range(10):
+    for i in range(6):
+        h = str(randint(0,255))
+        s = str(randint(0,255))
+        b = str(randint(0,200))
+        a = str(randint(90,255))
+        appendix += nl+"print.colour("+h+","+s+","+b+","+a+");"
         appendix += prtRd()
+
 
     file.write(prechange+appendix+postchange)
     file.close()
