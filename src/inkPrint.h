@@ -3,7 +3,8 @@
 
 #include "ofMain.h"
 
-class inkPrint{
+class inkPrint
+{
 
     public:
         

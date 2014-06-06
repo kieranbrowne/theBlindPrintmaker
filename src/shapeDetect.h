@@ -5,7 +5,8 @@
 
 #include "ofxOpenCv.h"
 
-class shapeDetect{
+class shapeDetect
+{
 
     public:
         

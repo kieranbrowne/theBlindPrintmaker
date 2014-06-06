@@ -10,12 +10,14 @@ inkPrint::inkPrint()
 }
 
 // -------------------------------
-void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot){
+void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot)
+{
     ofFill();
     ofSetPolyMode(OF_POLY_WINDING_NONZERO);
     ofBeginShape();
     // ----------
-    for(int i=0; i<=80; i++){
+    for(int i=0; i<=80; i++)
+    {
         float x = dx + (p[i][0] * scale);
         float y = dy + (p[i][1] * scale);
         ofVertex(x,y);
@@ -25,6 +27,7 @@ void inkPrint::read(float p[][2],float dx,float dy,float scale,float rot){
 }
 
 // -------------------------------
-void inkPrint::colour(int h, int s, int b, int a){
+void inkPrint::colour(int h, int s, int b, int a)
+{
     ofSetColor(ofColor::fromHsb(h,s,b,a));
 }
