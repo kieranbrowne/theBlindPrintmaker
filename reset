@@ -1,5 +1,5 @@
 #!/bin/bash
-
+# reset all files to stable state
 echo -n > bin/log.csv
 rm bin/data/*.png
 cp src/ofApp.h.bak src/ofApp.h

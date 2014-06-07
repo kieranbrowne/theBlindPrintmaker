@@ -1,0 +1,34 @@
+#!/bin/bash
+
+cd bin/data/inspiration
+clear
+echo "downloading images tagged "$1
+
+DIR="$1"
+if [ -d $DIR ]; then
+	cd $DIR
+else
+	mkdir $DIR
+	cd $DIR
+fi
+
+startCount=$(ls -1 | grep jpg | wc -l)
+wget -q "http://iconosquare.com/tag/$DIR/" -O -| grep 'a href="/p' |cut -d\" -f2 |
+	while read id; 
+		do 
+		wget -q -c `wget -q "http://iconosquare.com$id" -O -|grep 'og:image" content="http://origincache' |cut -c38- |cut -d\" -f2|sed 's/.\{5\}$//'`n.jpg;
+		wget -q -c `wget -q "http://iconosquare.com$id" -O -|grep 'og:image" content="http://distillery' |cut -c38- |cut -d\" -f2|sed 's/.\{5\}$//'`8.jpg;
+		echo "downloaded image" $id
+	done
+endCount=$(ls -1 | grep jpg | wc -l)
+let "endCount -= $startCount"
+echo "downloaded " $endCount " inspiration images tagged $1." 
+
+for f in *.jpg
+do convert $f -resize 320x320 $f
+done
+avconv -r 1/5 -i *.jpg -c:v libx264 ins.mp4
+
+mv ins.mp4 ../ins.mp4
+cd ../
+rm -r $DIR

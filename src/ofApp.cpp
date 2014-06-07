@@ -32,24 +32,10 @@ void ofApp::draw()
 
 //////////////////////////////////////////////
     ofPushMatrix();
-    //!s!//
-    print.colour(107,243,118,132);
-    print.read(p0002,109,109,378,0);
-    
-    print.colour(97,180,15,94);
-    print.read(p0002,334,126,85,0);
-    
-    print.colour(114,224,95,116);
-    print.read(p0004,235,204,260,0);
-    
-    print.colour(57,226,75,240);
-    print.read(p0002,234,354,105,0);
-    
-    print.colour(26,190,110,156);
-    print.read(p0000,163,124,309,0);
-    
-    print.colour(137,10,99,226);
-    print.read(p0002,178,228,62,0);
+    //!s!// 
+    print.colour(180,200,200,100);
+    print.read(p0000,100,100,200,0);
+    print.read(p0001,100,100,200,0);
     //!e!//
     ofPopMatrix();
 //////////////////////////////////////////////
