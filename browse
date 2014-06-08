@@ -4,7 +4,7 @@ cd bin/data/inspiration
 clear
 echo "downloading images tagged "$1
 
-DIR="$1"
+DIR=$1
 if [ -d $DIR ]; then
 	cd $DIR
 else
@@ -13,11 +13,10 @@ else
 fi
 
 startCount=$(ls -1 | grep jpg | wc -l)
-wget -q "http://iconosquare.com/tag/$DIR/" -O -| grep 'a href="/p' |cut -d\" -f2 |
+wget -q "http://iconosquare.com/tag/$DIR/" -O -| grep 'a href="http://iconosquare.com/p/' |cut -d\" -f2 | head -7 | tail -1 |
 	while read id; 
 		do 
-		wget -q -c `wget -q "http://iconosquare.com$id" -O -|grep 'og:image" content="http://origincache' |cut -c38- |cut -d\" -f2|sed 's/.\{5\}$//'`n.jpg;
-		wget -q -c `wget -q "http://iconosquare.com$id" -O -|grep 'og:image" content="http://distillery' |cut -c38- |cut -d\" -f2|sed 's/.\{5\}$//'`8.jpg;
+		wget -q -c `wget -q "$id" -O -|grep 'og:image" content=' |cut -c38- |cut -d\" -f2|sed 's/.\{5\}$//'`n.jpg;
 		echo "downloaded image" $id
 	done
 endCount=$(ls -1 | grep jpg | wc -l)
@@ -25,9 +24,9 @@ let "endCount -= $startCount"
 echo "downloaded " $endCount " inspiration images tagged $1." 
 
 for f in *.jpg
-do convert $f -resize 320x320 $f
+do convert $f -resize 320x320 %03d.jpg
 done
-avconv -r 1/5 -i *.jpg -c:v libx264 ins.mp4
+avconv -r 1/5 -i %03d.jpg -c:v libx264 ins.mp4
 
 mv ins.mp4 ../ins.mp4
 cd ../
