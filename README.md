@@ -8,7 +8,7 @@ The Blind Printmaker is an artificial intelligence which produces original artis
 - ```./reset``` returns mutated code to stable state based on .bak files.
 
 ## Dependencies
-The Blind Printmaker is currently bootstrapped from openFrameworks, Python and BASH code. There are plans to move Python functionality to openFrameworks at some stage.
+The Blind Printmaker is currently cobbled together from openFrameworks, Python and BASH code. There are plans to move Python functionality to openFrameworks at some stage.
 All code runs on 64bit Linux and is untested on other systems.
 The ```browse``` script makes use of ```avconv```, ```convert``` and ```wget``` and therefore requires some specific packages to be installed. Other commands should be standard to all BASH versions that I am aware of.
 
